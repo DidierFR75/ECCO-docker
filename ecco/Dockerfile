@@ -32,7 +32,4 @@ RUN set -ex;\
 VOLUME /ecco-input
 VOLUME /ecco/ecco-output
 
-RUN pwd
-RUN ls
-
 ENTRYPOINT ["/ecco/ecco.sh"]

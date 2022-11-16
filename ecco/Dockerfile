@@ -22,14 +22,17 @@ COPY *.sh /ecco/
 
 WORKDIR /ecco
 
-# small patch to avoid an exception...
+# small patch to avoid a runtime exception...
 RUN sed -i '/outputHandler.copySupportingDocuments/ s|^|/* | '  src/main/java/uk/ac/manchester/cs/diff/Ecco.java
 RUN sed -i '/outputHandler.copySupportingDocuments/ s|$| */| '  src/main/java/uk/ac/manchester/cs/diff/Ecco.java
 
 RUN set -ex;\
     ./ecco.sh
 
-VOLUME /ontologies
+VOLUME /ecco-input
 VOLUME /ecco/ecco-output
 
-# ENTRYPOINT ["/ecco/ecco.sh"]
+RUN pwd
+RUN ls
+
+ENTRYPOINT ["/ecco/ecco.sh"]
